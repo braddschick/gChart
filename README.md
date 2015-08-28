@@ -10,12 +10,12 @@ Currently __gChart__ will work with browsers IE9 and above.
 ## How To Use
 Pretty simple to start using gChart.
 1. Instantiate the gChart(__ID of Where to put the Chart__, __Chart Type__)
-    <script type="application/javascript">
+'''<script type="application/javascript">
     var g = new gChart('chart', 'column');
 2. Add the Data to the chart
-    g.data = { cols: [{id: 'col1', label: 'labels here', type: 'string'},{id: 'col2', label: 'Another label', type: 'number'},{id: 'col3', label: 'Yet Another label', type: 'number'}], rows: [{c: [ {v: 'Realm-1'}, {v: 3 }, {v: 2 }] }] };
+'''g.data = { cols: [{id: 'col1', label: 'labels here', type: 'string'},{id: 'col2', label: 'Another label', type: 'number'},{id: 'col3', label: 'Yet Another label', type: 'number'}], rows: [{c: [ {v: 'Realm-1'}, {v: 3 }, {v: 2 }] }] };
 3. Then call the __show()__ method
-    g.show();
+'''g.show();
 
 That is all that is required you can add other options that I will describe later. 
 
