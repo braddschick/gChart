@@ -92,7 +92,28 @@ Returns `google.visualization.ChartWrapper` object for the current chart.
 #### show()
 Displays the chart and if thier is a control designated then it too gets rendered at the same time.
 #### transpose()
-Transposes the Data to by switching the column headers to the row headers and the same with the data. Very similar to the Microsoft Excel Transpose function under Paste Special. 
+Transposes the Data to by switching the column headers to the row headers and the same with the data. Very similar to the Microsoft Excel Transpose function under Paste Special.
+
+## Full HTML Example
+```
+<html>
+    <head>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    </head>
+    <body>
+        <div id="chart" style="width: 900px;height: 450px;">
+            
+        </div>
+        <script type="application/javascript" src="js/gcharts.js"></script>
+        <script type="application/javascript">
+            var g = new gChart('chart', 'column');
+            g.data = { cols: [{id: 'RealmNumber', label: 'RealmNumber', type: 'string'},{id: 'Internal', label: 'Internal', type: 'number'},{id: 'External', label: 'External', type: 'number'}], rows: [{c: [ {v: 'Realm-1'}, {v: 3 }, {v: 2 }] }] };
+            g.options = {'stacked': 'true'};
+            g.show();
+        </script>
+    </body>
+</html>
+```
 
 ## License
 Google owns the Google Visualization library and it owns anything to do with that library.

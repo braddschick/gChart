@@ -45,12 +45,14 @@ gChart.prototype = {
             if(this.controls.length <1)
                 switch(this.chartType){
                     case this.chartTypes.COLUMN:
+                        if(new google.visualization.DataTable === undefined)
+                            google.load('visualization', '1', {packages:['corechart']});
                         this.init = true;
-                        google.load('visualization', '1', {packages:['corechart']});
                         break;
                 }
             else {
-                google.load('visualization', '1.0', {'packages':['controls']});
+                if(new google.visualization.DataTable === undefined)
+                    google.load('visualization', '1.0', {'packages':['controls']});
                 this.init = true;
             }
         }
