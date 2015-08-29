@@ -34,23 +34,40 @@ The ID of where the chart should be placed when it is ready.
 
 ##### ChartType
 Corresponds to the gchart.chartTypes **(ENUM)** for the type of chart to be displayed.
-1. __column__ chartTypes.COLUMN 
-2. __pie__ chartTypes.PIE 
-3. __bar__ chartTypes.BAR 
-4. __line__ chartTypes.LINE 
-5. __table__ chartTypes.TABLE 
-6. __annotate__ chartTypes.ANNOTATE 
-7. __area__ chartTypes.AREA 
-8. __bubble__ chartTypes.BUBBLE 
-9. __combo__ chartTypes.COMBO 
-10. __sankey__ chartTypes.SANKEY 
-11. __scatter__ chartTypes.SCATTER 
-12. __stepped__ chartTypes.STEPPED 
-13. __timeline__ chartTypes.TIMELINE 
-14. __treemap__ chartTypes.TREEMAP 
-15. __candle__ chartTypes.CANDLE 
-16. __word__ chartTypes.WORD 
-17. __gantt__ chartTypes.GANTT 
+
+__column__ chartTypes.COLUMN 
+
+__pie__ chartTypes.PIE 
+
+__bar__ chartTypes.BAR 
+
+__line__ chartTypes.LINE 
+
+__table__ chartTypes.TABLE 
+
+__annotate__ chartTypes.ANNOTATE 
+
+__area__ chartTypes.AREA 
+
+__bubble__ chartTypes.BUBBLE 
+
+__combo__ chartTypes.COMBO 
+
+__sankey__ chartTypes.SANKEY 
+
+__scatter__ chartTypes.SCATTER 
+
+__stepped__ chartTypes.STEPPED 
+
+__timeline__ chartTypes.TIMELINE 
+
+__treemap__ chartTypes.TREEMAP 
+
+__candle__ chartTypes.CANDLE 
+
+__word__ chartTypes.WORD 
+
+__gantt__ chartTypes.GANTT 
 
 ### Properties
 `this.container` = ID of the element to contain the chart for viewing.
