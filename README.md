@@ -28,30 +28,30 @@ That is all that is required you can add other options that I will describe late
 ### Classes
 
 #### gChart
-gChart__(ID, ChartType)__
+gChart __(ID, ChartType)__
 
 ##### ID
 The ID of where the chart should be placed when it is ready.
 
 ##### ChartType
 Corresponds to the gchart.chartTypes **(ENUM)** for the type of chart to be displayed.
-'column'=chartTypes.COLUMN;
-'pie'=chartTypes.PIE;
-'bar'=chartTypes.BAR;
-'line'=chartTypes.LINE;
-'table'=chartTypes.TABLE;
-'annotate'=chartTypes.ANNOTATE;
-'area'=chartTypes.AREA;
-'bubble'=chartTypes.BUBBLE;
-'combo'=chartTypes.COMBO;
-'sankey'=chartTypes.SANKEY;
-'scatter'=chartTypes.SCATTER;
-'stepped'=chartTypes.STEPPED;
-'timeline'=chartTypes.TIMELINE;
-'treemap'=chartTypes.TREEMAP;
-'candle'=chartTypes.CANDLE;
-'word'=chartTypes.WORD;
-'gantt'=chartTypes.GANTT;
+__column__ chartTypes.COLUMN 
+__pie__ chartTypes.PIE 
+__bar__ chartTypes.BAR 
+__line__ chartTypes.LINE 
+__table__ chartTypes.TABLE 
+__annotate__ chartTypes.ANNOTATE 
+__area__ chartTypes.AREA 
+__bubble__ chartTypes.BUBBLE 
+__combo__ chartTypes.COMBO 
+__sankey__ chartTypes.SANKEY 
+__scatter__ chartTypes.SCATTER 
+__stepped__ chartTypes.STEPPED 
+__timeline__ chartTypes.TIMELINE 
+__treemap__ chartTypes.TREEMAP 
+__candle__ chartTypes.CANDLE 
+__word__ chartTypes.WORD 
+__gantt__ chartTypes.GANTT 
 
 ## License
 Google owns the Google Visualization library and it owns anything to do with that library.
