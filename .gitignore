@@ -3,3 +3,6 @@
 # Example .gitignore files: https://github.com/github/gitignore
 /bower_components/
 /node_modules/
+/js/gviz-api.js
+/test.html
+/gviz-api.js
