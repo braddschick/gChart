@@ -39,22 +39,31 @@ gChart.prototype = {
         NUMRANGE: 'NumberRangeFilter',
         CATEGORY: 'CategoryFilter'
     },
+    loadCheck:function(){
+        try{
+            var g = new google.visualization.DataTable();
+            return false;
+        }
+        catch(e){
+            return true;
+        }
+    },
     loadInit:function(){
         if(!this.init)
         {
             if(this.controls.length <1)
-                switch(this.chartType){
-                    case this.chartTypes.COLUMN:
-                        if(new google.visualization.DataTable === undefined)
-                            google.load('visualization', '1', {packages:['corechart']});
-                        this.init = true;
-                        break;
-                }
+                if(this.loadCheck())
+                    google.load('visualization', '1', {packages:['corechart']});
+//                switch(this.chartType){
+//                    case this.chartTypes.COLUMN:
+//
+//                        break;
+//                }
             else {
                 if(new google.visualization.DataTable === undefined)
                     google.load('visualization', '1.0', {'packages':['controls']});
-                this.init = true;
             }
+            this.init = true;
         }
     },
     getWrapper:function(){
