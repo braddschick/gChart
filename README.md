@@ -96,7 +96,7 @@ Displays the chart and if thier is a control designated then it too gets rendere
 Transposes the Data to by switching the column headers to the row headers and the same with the data. Very similar to the Microsoft Excel Transpose function under Paste Special.
 
 ## Full HTML Example
-```
+```html
 <html>
     <head>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
