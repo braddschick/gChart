@@ -9,7 +9,8 @@ var path = require('path'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
+    file = require('fs');
 
 function inc(importance) {
     // get all the files to bump version in
@@ -26,6 +27,9 @@ function inc(importance) {
         // **tag it in the repository**
         .pipe(tag_version());
 }
+function vers(){
+    return JSON.parse(file.readFileSync('./package.json')).version;
+}
 
 gulp.task('clean', function () {
   return gulp.src('build', {read: false})
@@ -35,9 +39,10 @@ gulp.task('clean', function () {
 gulp.task('mini', function() {
   return gulp.src('js/*.js')
     .pipe(concat('gChart.js'))
+    .pipe(rename('gChart-'+vers()+'.js'))
     .pipe(gulp.dest('build'))
     .pipe(uglify())
-    .pipe(rename('gChart.min.js'))
+    //.pipe(rename('gChart-'+vers()+'.min.js'))
     .pipe(gulp.dest('build'))
     .on('error', gutil.log)
 });
