@@ -32,7 +32,11 @@ gChart.prototype = {
         TREEMAP: 'TreeMap',
         CANDLE: 'CandlestickChart',
         WORD: 'WordTree',
-        GANTT: 'GanttChart'
+        GANTT: 'GanttChart',
+        GEO: 'GeoChart',
+        CALENDAR: 'Calendar',
+        GAUGE: 'Gauge',
+        ORG: 'OrgChart'
     },
     controlTypes:{
         CHARTRANGE: 'ChartRangeFilter',
@@ -53,17 +57,44 @@ gChart.prototype = {
         {
             if(this.controls.length <1)
                 if(this.loadCheck())
-                    google.load('visualization', '1', {packages:['corechart']});
-//                switch(this.chartType){
-//                    case this.chartTypes.COLUMN:
-//
-//                        break;
-//                }
+                    this.getPackage();
             else {
-                if(new google.visualization.DataTable === undefined)
+                if(this.loadCheck())
                     google.load('visualization', '1.0', {'packages':['controls']});
             }
             this.init = true;
+        }
+    },
+    getPackage:function(){
+        switch(this.chartType){
+            case this.chartTypes.ANNOTATE:
+                return google.load('visualization', '1', {'packages':['annotationchart']});
+            case this.chartTypes.BAR:
+                return google.load('visualization', '1', {packages: ['corechart', 'bar']});
+            case this.chartTypes.CALENDAR:
+                return google.load('visualization', '1.1', {packages:['calendar']});
+            case this.chartTypes.GANTT:
+                return google.load('visualization', '1.1', {packages:['gantt']});
+            case this.chartTypes.GAUGE:
+                return google.load('visualization', '1', {packages:['gauge']});
+            case this.chartTypes.GEO:
+                return google.load('visualization', '1', {packages:['geochart']});
+            case this.chartTypes.LINE:
+                return google.load('visualization', '1', {packages: ['corechart', 'line']});
+            case this.chartTypes.ORG:
+                return google.load('visualization', '1', {packages:['orgchart']});
+            case this.chartTypes.SANKEY:
+                return google.load('visualization', '1.1', {packages:['sankey']});
+            case this.chartTypes.TABLE:
+                return google.load('visualization', '1.1', {packages:['table']});
+            case this.chartTypes.TIMELINE:
+                return google.load('visualization', '1', {packages:['timeline']});
+            case this.chartTypes.TREEMAP:
+                return google.load('visualization', '1', {packages:['treemap']});
+            case this.chartTypes.WORD:
+                return google.load('visualization', '1.1', {packages:['wordtree']});
+            default:
+                return google.load('visualization', '1', {packages:['corechart']});
         }
     },
     getWrapper:function(){
@@ -162,6 +193,18 @@ gChart.prototype = {
             case 'gantt':
                 return this.chartTypes.GANTT;
                 break;
+            case 'geo':
+                return this.chartTypes.GEO;
+                break;
+            case 'calendar':
+                return this.chartTypes.CALENDAR;
+                break;
+            case 'gauge':
+                return this.chartTypes.GAUGE;
+                break;
+            case 'org':
+                return this.chartTypes.ORG;
+                break
         }
     },
     selectControl:function(theControlType){
