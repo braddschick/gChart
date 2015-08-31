@@ -1,6 +1,6 @@
 {
   "name": "gchart",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Google Charts Wrapper for JS simplifing the usage",
   "main": "gchart.js",
   "dependencies": {
