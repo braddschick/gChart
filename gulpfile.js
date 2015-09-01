@@ -42,7 +42,6 @@ gulp.task('mini', function() {
     .pipe(rename('gChart-'+vers()+'.js'))
     .pipe(gulp.dest('build'))
     .pipe(uglify())
-    //.pipe(rename('gChart-'+vers()+'.min.js'))
     .pipe(gulp.dest('build'))
     .on('error', gutil.log)
 });

@@ -4,6 +4,7 @@ function gChart(theContainer,theChartType) {
     this.container = theContainer;
     this.chartType = this.selectChart(theChartType)||chartTypes.COLUMN;
     this.data = {};
+    this.dataView = {};
     this.options = {};
     this.onMouse = new function(){};
     this.divDashboard = '';
@@ -11,8 +12,14 @@ function gChart(theContainer,theChartType) {
     this.moreCharts = [];
     this.gChartOpts = {};
     this.init = false;
+    this.errorContainer = '';
 }
-
+function errorHandler(errorMessage) {
+    console.warn(errorMessage.message);
+    google.visualization.errors.removeError(errorMessage.id);
+    var b = document.body.innerHTML;
+    document.body.innerHTML = '<div class="gChart_Error"><p class="gChart_ErrorMessage" id="'+errorMessage.id+'">'+errorMessage.message+'</p></div>'+b;
+}
 gChart.prototype = {
     constructor: gChart,
     chartTypes:{
@@ -76,7 +83,7 @@ gChart.prototype = {
             case this.chartTypes.GANTT:
                 return google.load('visualization', '1.1', {packages:['gantt']});
             case this.chartTypes.GAUGE:
-                return google.load('visualization', '1', {packages:['gauge']});
+                return google.load('visualization', '1', {packages:['corechart', 'gauge']});
             case this.chartTypes.GEO:
                 return google.load('visualization', '1', {packages:['geochart']});
             case this.chartTypes.LINE:
@@ -84,7 +91,7 @@ gChart.prototype = {
             case this.chartTypes.ORG:
                 return google.load('visualization', '1', {packages:['orgchart']});
             case this.chartTypes.SANKEY:
-                return google.load('visualization', '1.1', {packages:['sankey']});
+                return google.load('visualization', '1.1', {packages:['corechart', 'sankey']});
             case this.chartTypes.TABLE:
                 return google.load('visualization', '1.1', {packages:['table']});
             case this.chartTypes.TIMELINE:
@@ -99,12 +106,14 @@ gChart.prototype = {
     },
     getWrapper:function(){
         this.loadInit();
-        return new google.visualization.ChartWrapper({
+        var m = new google.visualization.ChartWrapper({
             chartType: this.chartType,
             dataTable: this.data,
             options: this.options,
             containerId: this.container
           });
+        google.visualization.events.addListener(m, 'error', errorHandler);
+        return m;
     },
     setData:function(theData){
         this.loadInit();
@@ -112,6 +121,12 @@ gChart.prototype = {
             this.data = new google.visualization.DataTable(theData);
         else
             this.data = new google.visualization.arrayToDataTable(theData);
+    },
+    setDataView:function(theColumnIndexes){
+        if(this.data !== undefined && theColumnIndexes !== undefined){
+            this.dataView = new google.visualization.DataView(this.data);
+            this.dataView.setColumns(theColumnIndexes);
+        }
     },
     addControl:function(theControlType, theContainer, theColumnLabel){
          this.controls.push( new google.visualization.ControlWrapper({
@@ -125,8 +140,11 @@ gChart.prototype = {
     addChart:function(theNewChart){
         this.moreCharts.push(theNewChart);
     },
-    addEvent:function(theSuccess){
-        google.visualization.events.addListener(this.getWrapper(), 'ready', theSuccess||this.onMouse);
+    addEvent:function(theEventType, theSuccess){
+        if(theEventType.toLowerCase() !== 'error')
+            google.visualization.events.addListener(this.getWrapper(), theEventType, theSuccess||this.onMouse);
+        else
+            google.visualization.events.addListener(this.getWrapper(), 'error', errorHandler);
     },
     transpose:function(){
         if(this.data.getNumberOfRows() < 2 && this.data.getNumberOfColumns() > 2){
@@ -225,13 +243,17 @@ gChart.prototype = {
             this.loadInit();
             var t = this;
             google.setOnLoadCallback(function(){
-                t.setData(t.data);
-                switch(t.chartType){
-                    case t.chartTypes.PIE:
-                        t.transpose();
-                    break;
-                }
-                t.getWrapper().draw();
+                    if(typeof(t.dataView) === google.visualization.DataView){
+                        t.setData(t.dataView);
+                    }
+                    else
+                        t.setData(t.data);
+                    switch(t.chartType){
+                        case t.chartTypes.PIE:
+                            t.transpose();
+                        break;
+                    }
+                    t.getWrapper().draw();
             });
         }
         else {
@@ -239,13 +261,13 @@ gChart.prototype = {
             var dashboard = new google.visualization.Dashboard(this.divDashboard);
             var t = this;
             google.setOnLoadCallback(function(){
-                if(t.moreCharts.length < 0)
-                    dashboard.bind(t.controls[0],t.getWrapper());
-                else {
-                    if(t.moreCharts.length === 1)
-                        dashboard.bind(t.controls[0],t.getWrapper(),t.moreCharts[0].getWrapper());
-                }
-                dashboard.draw();
+                    if(t.moreCharts.length < 0)
+                        dashboard.bind(t.controls[0],t.getWrapper());
+                    else {
+                        if(t.moreCharts.length === 1)
+                            dashboard.bind(t.controls[0],t.getWrapper(),t.moreCharts[0].getWrapper());
+                    }
+                    dashboard.draw();
             });
         }
     }
