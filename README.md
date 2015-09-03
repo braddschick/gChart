@@ -1,6 +1,9 @@
 # gChart
 [Google Charts](https://developers.google.com/chart/?hl=en) Wrapper Javascript Library for simply creating Google Charts without the overhead of all the extra stuff that Google Charts demands.
 
+# Project Site
+Go to the [Project Site](http://braddschick.github.io/gChart) for comprehensive documentation of the full class. 
+
 ## Requirements
 You must still include the [Google JSAPI](https://www.google.com/jsapi) script in your html code. This is a __mandatory__ requirement.
 
@@ -35,57 +38,6 @@ The ID of where the chart should be placed when it is ready.
 
 ##### ChartType
 Corresponds to the gchart.chartTypes **(ENUM)** for the type of chart to be displayed.
-
-__column__ chartTypes.COLUMN 
-
-__pie__ chartTypes.PIE 
-
-__bar__ chartTypes.BAR 
-
-__line__ chartTypes.LINE 
-
-__table__ chartTypes.TABLE 
-
-__annotate__ chartTypes.ANNOTATE 
-
-__area__ chartTypes.AREA 
-
-__bubble__ chartTypes.BUBBLE 
-
-__combo__ chartTypes.COMBO 
-
-__sankey__ chartTypes.SANKEY 
-
-__scatter__ chartTypes.SCATTER 
-
-__stepped__ chartTypes.STEPPED 
-
-__timeline__ chartTypes.TIMELINE 
-
-__treemap__ chartTypes.TREEMAP 
-
-__candle__ chartTypes.CANDLE 
-
-__word__ chartTypes.WORD 
-
-__gantt__ chartTypes.GANTT 
-
-### Properties
-`this.container` = ID of the element to contain the chart for viewing.
-
-`this.chartType` = `chartTypes.[COLUMN,COMBO,etc...]` google.visualization.[chart type]
-
-`this.data` = Could be either an `Array` or `google.visualization.DataTable`. [description](https://developers.google.com/chart/interactive/docs/datatables_dataviews)
-
-`this.options` = New Object of any Chart Options as required for the chart.
-
-`this.onMouse` = new function(){} for any mouseover event on the chart. [description](https://developers.google.com/chart/interactive/docs/events)
-
-`this.divDashboard` = ID of the element to contain the dashboard for viewing. [description](https://developers.google.com/chart/interactive/docs/gallery/controls)
-
-`this.controls` = Should be an `Array` containing one or numerous `google.visualization.ControlWrapper`. [description](https://developers.google.com/chart/interactive/docs/gallery/controls)
-
-`this.gChartOpts` = New Object for anny additional specifc items needed for gChart to complete.
 
 ### Methods
 #### getWrapper()
