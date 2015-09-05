@@ -6,7 +6,7 @@ function gChart(theContainer,theChartType) {
     this.data = {};
     this.dataView = {};
     this.options = {};
-    this.onMouse = new function(){};
+    this.onEvent = {};
     this.divDashboard = '';
     this.controls = [];
     this.moreCharts = [];
@@ -17,8 +17,14 @@ function gChart(theContainer,theChartType) {
 function errorHandler(errorMessage) {
     console.warn(errorMessage.message);
     google.visualization.errors.removeError(errorMessage.id);
-    var b = document.body.innerHTML;
-    document.body.innerHTML = '<div class="gChart_Error"><p class="gChart_ErrorMessage" id="'+errorMessage.id+'">'+errorMessage.message+'</p></div>'+b;
+    if(this.errorContainer.length < 1) {
+        var b = document.body.innerHTML;
+        document.body.innerHTML = '<div class="gChart_Error"><p class="gChart_ErrorMessage" id="'+errorMessage.id+'">'+errorMessage.message+'</p></div>'+b;
+    }
+    else {
+         var b = document.getElementById(this.errorContainer).innerHTML;
+        document.getElementById(this.errorContainer).innerHTML = '<div class="gChart_Error"><p class="gChart_ErrorMessage" id="'+errorMessage.id+'">'+errorMessage.message+'</p></div>'+b;
+    }
 }
 gChart.prototype = {
     constructor: gChart,
@@ -142,7 +148,7 @@ gChart.prototype = {
     },
     addEvent:function(theEventType, theSuccess){
         if(theEventType.toLowerCase() !== 'error')
-            google.visualization.events.addListener(this.getWrapper(), theEventType, theSuccess||this.onMouse);
+            google.visualization.events.addListener(this.getWrapper(), theEventType, theSuccess||this.onEvent);
         else
             google.visualization.events.addListener(this.getWrapper(), 'error', errorHandler);
     },
